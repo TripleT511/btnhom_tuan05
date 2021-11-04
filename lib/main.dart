@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -123,6 +125,7 @@ class MailPage extends StatelessWidget {
   const MailPage({Key? key}) : super(key: key);
 
   Container buildF(IconData i, double pad, String str) {
+    int randN = Random().nextInt(100);
     bool value1 = false;
     bool value2 = false;
     return Container(
@@ -157,7 +160,7 @@ class MailPage extends StatelessWidget {
                     bottom:
                         BorderSide(color: Colors.grey.shade200, width: 1.0))),
             child: Text(
-              '1',
+              '$randN',
             ),
           )
         ],
@@ -167,8 +170,6 @@ class MailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool value1 = false;
-    bool value2 = false;
     return Scaffold(
         appBar: AppBar(
           title: Text('Mail'),
