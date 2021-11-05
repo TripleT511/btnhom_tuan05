@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LogInFail(),
+      home: const LoginPage(),
     );
   }
 }
@@ -309,7 +309,7 @@ class LogInFail extends StatelessWidget {
   Widget build(BuildContext context) {
     //  Logo
     Widget _logo = Container(
-      margin: EdgeInsets.fromLTRB(0, 80, 0, 40),
+      margin: const EdgeInsets.fromLTRB(0, 80, 0, 30),
       child: Image.asset(
         'images/Logo_02.png',
         width: 150,
@@ -319,33 +319,32 @@ class LogInFail extends StatelessWidget {
     );
 
     //  TextTitle
-    Widget _TextTitle = Column(
+    Widget _textTitle = Column(
       children: [
         Container(
-          child: Text(
+          child: const Text(
             "UPS..... Couldn't Sign In",
             style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-          child: Text(
+          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: const Text(
             "Your username and password don't match.",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 18,
               color: Colors.blueGrey,
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 200),
-          child: Text(
+          margin: const EdgeInsets.only(bottom: 200),
+          child: const Text(
             "Please, try again.",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 18,
               color: Colors.blueGrey,
             ),
           ),
@@ -355,7 +354,7 @@ class LogInFail extends StatelessWidget {
 
     //  btnTryAgain
     Widget _btnTryAgain = Container(
-      margin: EdgeInsets.fromLTRB(15, 0, 15, 100),
+      margin: const EdgeInsets.fromLTRB(15, 0, 15, 103),
       child: TextButton(
         onPressed: () {
           Navigator.push(
@@ -366,16 +365,14 @@ class LogInFail extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: Colors.black,
           padding: const EdgeInsets.all(10.0),
-          minimumSize: Size(500, 60),
-          shape: RoundedRectangleBorder(
+          minimumSize: const Size(500, 60),
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.zero),
           ),
         ),
-        child: Text(
+        child: const Text(
           'TRY AGAIN',
-          style: TextStyle(
-            fontSize: 20,
-          ),
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );
@@ -386,7 +383,7 @@ class LogInFail extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _logo,
-            _TextTitle,
+            _textTitle,
             _btnTryAgain,
           ],
         ),
