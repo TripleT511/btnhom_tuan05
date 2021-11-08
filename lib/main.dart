@@ -224,21 +224,47 @@ class MailPage extends StatefulWidget {
 }
 
 class _MailPageState extends State<MailPage> {
-  Container buildF(IconData i, double pad, String str) {
-    int randN = Random().nextInt(100);
-    bool value1 = false;
+  final List<bool> lst = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  List<int> lstChange = [];
+  void _changeCheckbox(int index) {
+    setState(() {});
+  }
 
+  Container buildF(IconData i, double pad, String str, int index) {
+    int randN = Random().nextInt(100);
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blue;
+    }
+
+    bool isChecked = lst[index];
     return Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(bottom: 15),
       child: Row(
         children: [
           Checkbox(
-            value: value1,
-            checkColor: Colors.red,
-            onChanged: (bool? value2) {
+            value: isChecked,
+            fillColor: MaterialStateProperty.resolveWith(getColor),
+            checkColor: Colors.white,
+            onChanged: (bool? value) {
               setState(() {
-                value1 = value2!;
+                lst[index] = value!;
               });
             },
           ),
@@ -305,19 +331,19 @@ class _MailPageState extends State<MailPage> {
                   color: Colors.grey.shade200,
                   child: const Text('Mailboxes'),
                 ),
-                buildF(Icons.inbox, 300, 'All Inboxes'),
-                buildF(Icons.cloud, 328, 'ICloud'),
-                buildF(Icons.mail_outline, 330, 'Gmail'),
-                buildF(Icons.mail, 315, 'Hot Mail'),
-                buildF(Icons.star, 345, 'Vip'),
+                buildF(Icons.inbox, 300, 'All Inboxes', 0),
+                buildF(Icons.cloud, 328, 'ICloud', 1),
+                buildF(Icons.mail_outline, 330, 'Gmail', 2),
+                buildF(Icons.mail, 315, 'Hot Mail', 3),
+                buildF(Icons.star, 345, 'Vip', 4),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
                   color: Colors.grey.shade200,
                   child: const Text('Special folder'),
                 ),
-                buildF(Icons.security, 317, 'Sercure'),
-                buildF(Icons.notification_add, 292, 'Nofications'),
+                buildF(Icons.security, 317, 'Sercure', 5),
+                buildF(Icons.notification_add, 292, 'Nofications', 6),
                 Expanded(child: Container()),
                 Container(
                   padding: const EdgeInsets.all(15),
@@ -331,7 +357,10 @@ class _MailPageState extends State<MailPage> {
                       Container(
                         margin: const EdgeInsets.only(right: 100),
                         alignment: Alignment.center,
-                        child: const Text('Updated Just Now'),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text('Updated Just Now'),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {},
