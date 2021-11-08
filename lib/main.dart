@@ -218,13 +218,18 @@ class LoadingPage extends StatelessWidget {
   }
 }
 
-class MailPage extends StatelessWidget {
+class MailPage extends StatefulWidget {
   const MailPage({Key? key}) : super(key: key);
 
+  @override
+  State<MailPage> createState() => _MailPageState();
+}
+
+class _MailPageState extends State<MailPage> {
   Container buildF(IconData i, double pad, String str) {
     int randN = Random().nextInt(100);
     bool value1 = false;
-    bool value2 = false;
+
     return Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(bottom: 15),
@@ -232,8 +237,11 @@ class MailPage extends StatelessWidget {
         children: [
           Checkbox(
             value: value1,
-            onChanged: (value2) {
-              value1 = true;
+            checkColor: Colors.red,
+            onChanged: (bool? value2) {
+              setState(() {
+                value1 = value2!;
+              });
             },
           ),
           Icon(
@@ -295,6 +303,34 @@ class MailPage extends StatelessWidget {
                 ),
                 buildF(Icons.security, 317, 'Sercure'),
                 buildF(Icons.notification_add, 292, 'Nofications'),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(
+                              color: Colors.blueAccent, width: 1.0))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 100),
+                        alignment: Alignment.center,
+                        child: Text('Update Just Now'),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Xóa',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.blueAccent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
