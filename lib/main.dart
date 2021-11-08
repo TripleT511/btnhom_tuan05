@@ -321,6 +321,7 @@ class _MailPageState extends State<MailPage> {
                 ),
                 buildF(Icons.security, 317, 'Sercure'),
                 buildF(Icons.notification_add, 292, 'Nofications'),
+                Expanded(child: Container()),
                 Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
