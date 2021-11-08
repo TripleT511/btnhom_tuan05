@@ -233,13 +233,22 @@ class _MailPageState extends State<MailPage> {
     false,
     false,
   ];
+  final List<bool> lstV = [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ];
   List<int> lstChange = [];
+  int randN = Random().nextInt(100);
   void _changeCheckbox(int index) {
     setState(() {});
   }
 
-  Container buildF(IconData i, double pad, String str, int index) {
-    int randN = Random().nextInt(100);
+  Visibility buildF(IconData i, double pad, String str, int index) {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.pressed,
@@ -253,53 +262,56 @@ class _MailPageState extends State<MailPage> {
     }
 
     bool isChecked = lst[index];
-    return Container(
-      alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(bottom: 15),
-      child: Row(
-        children: [
-          Checkbox(
-            value: isChecked,
-            fillColor: MaterialStateProperty.resolveWith(getColor),
-            checkColor: Colors.white,
-            onChanged: (bool? value) {
-              setState(() {
-                lst[index] = value!;
-              });
-            },
+    bool vs = lstV[index];
+    return Visibility(
+        visible: vs,
+        child: Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(bottom: 15),
+          child: Row(
+            children: [
+              Checkbox(
+                value: isChecked,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+                checkColor: Colors.white,
+                onChanged: (bool? value) {
+                  setState(() {
+                    lst[index] = value!;
+                  });
+                },
+              ),
+              Container(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              color: Colors.grey.shade200, width: 1.0))),
+                  child: Icon(
+                    i,
+                    color: Colors.blueAccent,
+                  )),
+              Container(
+                padding: const EdgeInsets.only(left: 10, bottom: 10),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Colors.grey.shade200, width: 1.0))),
+                child: Text(
+                  str,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: pad, bottom: 10),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Colors.grey.shade200, width: 1.0))),
+                child: Text(
+                  '$randN',
+                ),
+              )
+            ],
           ),
-          Container(
-              decoration: BoxDecoration(
-                  border: Border(
-                      bottom:
-                          BorderSide(color: Colors.grey.shade200, width: 1.0))),
-              child: Icon(
-                i,
-                color: Colors.blueAccent,
-              )),
-          Container(
-            padding: const EdgeInsets.only(left: 10, bottom: 10),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom:
-                        BorderSide(color: Colors.grey.shade200, width: 1.0))),
-            child: Text(
-              str,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: pad, bottom: 10),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom:
-                        BorderSide(color: Colors.grey.shade200, width: 1.0))),
-            child: Text(
-              '$randN',
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   @override
@@ -363,7 +375,15 @@ class _MailPageState extends State<MailPage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          for (int i = 0; i < 5; i++) {
+                            if (lst[i] == true) {
+                              setState(() {
+                                lstV[i] = false;
+                              });
+                            }
+                          }
+                        },
                         child: const Text(
                           'Xóa',
                           style: TextStyle(color: Colors.white),
