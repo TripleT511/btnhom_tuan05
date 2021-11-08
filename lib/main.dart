@@ -40,10 +40,8 @@ class _LoginPagePageState extends State<LoginPage> {
   }
 
   void handleTimeout() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const MailPage()),
-    );
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const MailPage()));
   }
 
   @override
@@ -203,7 +201,7 @@ class LoadingPage extends StatelessWidget {
     );
     Widget _loading = Container(
       margin: const EdgeInsets.only(top: 50.0),
-      child: const SpinKitRing(color: Colors.white),
+      child: const SpinKitCircle(color: Colors.white),
     );
     return Scaffold(
       backgroundColor: Colors.lightBlue.shade400,
@@ -290,14 +288,13 @@ class _MailPageState extends State<MailPage> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'MailBoxes',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(fontSize: 18),
                       ),
                     ],
                   ),
@@ -323,8 +320,8 @@ class _MailPageState extends State<MailPage> {
                 buildF(Icons.notification_add, 292, 'Nofications'),
                 Expanded(child: Container()),
                 Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(15),
+                  decoration: const BoxDecoration(
                       border: Border(
                           top: BorderSide(
                               color: Colors.blueAccent, width: 1.0))),
@@ -332,13 +329,13 @@ class _MailPageState extends State<MailPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 100),
+                        margin: const EdgeInsets.only(right: 100),
                         alignment: Alignment.center,
-                        child: Text('Update Just Now'),
+                        child: const Text('Updated Just Now'),
                       ),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Xóa',
                           style: TextStyle(color: Colors.white),
                         ),
