@@ -244,10 +244,15 @@ class _MailPageState extends State<MailPage> {
               });
             },
           ),
-          Icon(
-            i,
-            color: Colors.blueAccent,
-          ),
+          Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(color: Colors.grey.shade200, width: 1.0))),
+              child: Icon(
+                i,
+                color: Colors.blueAccent,
+              )),
           Container(
             padding: const EdgeInsets.only(left: 10, bottom: 10),
             decoration: BoxDecoration(
@@ -284,6 +289,19 @@ class _MailPageState extends State<MailPage> {
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'MailBoxes',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
